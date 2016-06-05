@@ -16,7 +16,11 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
-        query: { cacheDirectory: true }
+        query: { 
+          cacheDirectory: true,
+          plugins: ['transform-decorators-legacy'],
+          presets: ['es2015', 'stage-1', 'react']
+        }
       }
     ]
   },
