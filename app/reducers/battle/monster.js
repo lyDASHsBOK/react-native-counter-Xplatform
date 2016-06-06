@@ -8,14 +8,14 @@ export default function ({state, action}) {
     var newAction = {...action};
     switch (action.type) {
         case HERO_HIT:
-            const atk = state.hero.getAttr().atk;
+            const atk = state.callHero().getAttr().atk;
 
-            if(newState.monster.takeHit(atk).isDead()) {
+            if(newState.callMonster().takeHit(atk).isDead()) {
                 //conclude fight
                 newAction.monsterKilled = true;
 
                 //search new monster
-                newState.monster = newState.monster.respawn();
+                newState.callMonster = newState.callMonster().respawn();
             }
             break;
     }

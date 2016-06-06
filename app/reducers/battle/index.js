@@ -4,11 +4,16 @@
 import {compose} from 'redux';
 import monster from './monster';
 import hero from './hero';
-import HeroEntity from '../../entities/hero';
-import MonsterEntity from '../../entities/monster';
+import Entity from '../../entities/base';
+import HeroRole from '../../entities/roles/hero';
+import MonsterRole from '../../entities/roles/monster';
+import WithPet from '../../entities/roles/withPet';
 import {makeEntree, exit} from '../../utils/reducerHelper';
 
+var Boss = compose(MonsterRole, HeroRole);
+var Hunter = compose(WithPet, HeroRole);
+
 export default compose(exit, hero, monster, makeEntree({
-    hero: new HeroEntity(),
-    monster: new MonsterEntity()
+    callHero: Hunter(Entity)(),
+    callMonster: Boss(Entity)()
 }));

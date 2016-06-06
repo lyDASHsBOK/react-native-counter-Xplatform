@@ -8,7 +8,7 @@ export default function ({state, action}) {
     switch (action.type) {
         case HERO_HIT:
             if(action.monsterKilled)
-                newState.hero = state.hero.levelUp();
+                newState.callHero = state.callHero().levelUp();
             break;
     }
 
